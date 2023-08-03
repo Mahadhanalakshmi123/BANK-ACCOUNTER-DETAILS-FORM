@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bank Application Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    label,
+    input {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+      margin-top: 15px;
+      background-color: #4CAF50; /* Green color for the submit button */
+      color: #fff; /* Text color for the submit button */
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049; /* Darker green color on hover */
+    }
+
+    #message {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Accounter Details</h1>
+  <form id="accounter-details">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="account-number">Account Number:</label>
+    <input type="text" id="accountNumber" name="accountNumber" required>
+
+    <label for="email">Email ID:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="phonenumber">Phone Number:</label>
+    <input type="text" id="phonenumber" name="phonenumber" required>
+
+    <label for="bankname">Bank Name:</label>
+    <input type="text" id="bankname" name="bankname" required>
+
+    <label for="ifsccode">IFSC Code:</label>
+    <input type="text" id="ifsccode" name="ifsccode" required>
+
+    <input type="submit" value="Submit">
+  </form>
+
+  <h2 id="message"></h2>
+
+  <script>
+    const form = document.getElementById("accounter-details");
+    const message = document.getElementById("message");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const name = form.elements.name.value;
+      const accountNumber = form.elements.accountNumber.value;
+      const email = form.elements.email.value;
+      const phonenumber = form.elements.phonenumber.value;
+      const bankname = form.elements.bankname.value;
+      const ifsccode = form.elements.ifsccode.value;
+
+      const phoneNumberRegex = /^\d{1,10}$/;
+    if (!phoneNumberRegex.test(phonenumber)) {
+      message.textContent = "Please enter a valid phone number with up to 10 digits.";
+      return;
+    }
+
+      if (!name || !accountNumber || !email || !phonenumber || !bankname || !ifsccode) {
+        message.textContent = "Please fill out all fields.";
+        return;
+      }
+
+      // All validations passed, show the "Accounter Details" heading
+      message.textContent = "Sucessfully submitted Accounter Details";
+    });
+  </script>
+</body>
+
